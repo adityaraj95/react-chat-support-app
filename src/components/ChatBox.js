@@ -1,16 +1,14 @@
 import React, { useState , useEffect} from 'react'
 // import CloseIcon from '@mui/icons-material/Close';
 import {CgClose} from 'react-icons/cg';
-
-
+import { TextField } from '@mui/material';
+import {IoIosSend} from 'react-icons/io'
 const ChatBox =()=>{ 
 
     const [messages, setMessages] = useState([]);
 
     useEffect(()=>{
-        setMessages('hola amigo');
-        setMessages('123');
-        setMessages('abc');
+
     },)
 
     return(
@@ -23,7 +21,8 @@ const ChatBox =()=>{
          <div className='text-container'>
           
          </div>
-         <div className='text-input'></div>
+         <div className='text-input'><input className='iotext'></input><button><IoIosSend color='purple' size={24}/></button></div> 
+    
         </div>
     );
 }

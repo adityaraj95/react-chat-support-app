@@ -9,7 +9,7 @@
 
 .chat-window{
   border: 1px solid #949494;
-  height: 441px;
+  height: 498px;
   text-align: center;
   width: 371px;
   box-shadow: #828282;
@@ -25,10 +25,24 @@
 .close{
   margin-left:auto;
 }
+.text-container{
+  display: block;
+  height: 441px;
+  width: 371px;
+  overflow-x:auto
+
+}
 .titlebar-text{
   margin:0px;
   text-align: left;
   padding-left: 10px;
+}
+.iotext{
+  width: 100%;
+}
+.text-input{
+display: flex;
+border: none;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
