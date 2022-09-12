@@ -9,7 +9,7 @@
 
 .chat-window{
   border: 1px solid #949494;
-  height: 498px;
+  /* height: 441px; */
   text-align: center;
   width: 371px;
   box-shadow: #828282;
@@ -37,8 +37,8 @@
   text-align: left;
   padding-left: 10px;
 }
-.iotext{
-  width: 100%;
+.textField{
+  border: 1px solid #949494;
 }
 .text-input{
 display: flex;
