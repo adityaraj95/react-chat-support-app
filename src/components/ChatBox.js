@@ -10,8 +10,8 @@ const ChatBox =()=>{
 
     const [automatedResponses, setAutomatedResponses] = useState(automatedResponse); // automated responses would be added to chat text based on user input
     const [userInput, setUserInput]= useState('') ; // User Input string is pushed to chat text upon submit
-    const [isLoading, setisLoading]= useState(false); // boolean for displaying loading animation
-    const [isActive , setIsActive] = useState(true);
+    // const [isLoading, setisLoading]= useState(false); // boolean for displaying loading animation
+    const [isActive , setIsActive] = useState(true); //flag for displaying loading animation
     const [chatText, setChatText] = useState([]); //Chat Text is a first in first out array which stores the chat conversation in order.
     const [timeout , setTimeout] = useState(0);
 
@@ -59,19 +59,26 @@ const ChatBox =()=>{
     },[])
     useEffect(()=>{  // TODO : improve timeout logic //// started timer which renders loading animation upon no user input within 3000ms
         let interval;
+        // console.log('check is active', isActive);
         if(isActive){
+            // console.log('is active should be true');
             interval = setInterval(() => {
                 setTimeout((timeout) => timeout + 10);
               }, 10);
         }
+        return () => clearInterval(interval);
     },[isActive])
-    useEffect(()=>{
-        if(timeout>3000){
-            console.log('do the loading animation');
+    useEffect(()=>{ //chaining react hooks to set 3 second timeout upon no user input
+        if(timeout>3000 && isActive){
+            // console.log('do the loading animation', timeout);
+            setChatText(chatText.concat(automatedResponses[1]));
             setTimeout(0);
             setIsActive(false);
         }
     },[timeout])
+    useEffect(()=>{ // hook for everytime chat gets updated
+        
+    },[chatText])
 
     let chat= chatText && renderChat(chatText);
     return( 
