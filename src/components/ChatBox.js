@@ -22,9 +22,8 @@ const ChatBox =()=>{
             setChatText(chatText.concat(_userMsg));
             setUserInput('');
             setIsActive(false);
+            setisLoading(false);
         }
-        
-     
     }
 
     const renderChat=(chatText)=>{ // Rendering what to be displayed in chat upon submit
@@ -48,9 +47,7 @@ const ChatBox =()=>{
     //             setChatText(chatText.concat(automatedResponse));
     //             setNoInputText(false);
     //         }
-           
     //      }, 3000);
-    
     // },[noInputText])
 
     useEffect(()=>{ // Loading the chat box for the first time , set the initial chat text to desired message
@@ -73,8 +70,8 @@ const ChatBox =()=>{
         if(time>5000 && isActive){
             // console.log('do the loading animation', timeout);
             setisLoading(true);
-            setTimeout(() => {
-                setChatText(chatText.concat(automatedResponses[1])); // do loading animation for 3 seconds before rendering next response
+            setTimeout(() => { // TODO : resolve edge case where user input comes while animation in progress
+                    setChatText(chatText.concat(automatedResponses[1])); // do loading animation for 3 seconds before rendering next response
                 setisLoading(false);
               }, 3000);
           
@@ -91,7 +88,7 @@ const ChatBox =()=>{
         <div className='chat-window'>
          <div className='titlebar'>
                 <p className='titlebar-text' style={{margin:0}}>Chat</p> 
-                <CgClose className='close' size={24} color='white'/>
+                <CgClose className='close' size={24} color='white' onClick={()=>{}}/>
          </div>
          <div className='text-container'>
             {/* { chatText && chatText.map(data =>{
