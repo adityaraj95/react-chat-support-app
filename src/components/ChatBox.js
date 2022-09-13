@@ -2,10 +2,10 @@ import React, { useState , useEffect} from 'react'
 // import CloseIcon from '@mui/icons-material/Close';
 import {CgClose} from 'react-icons/cg';
 import { Input } from '@mui/material';
-import {automatedResponse} from './ChatBoxComponents/automatedResponses';
+import {automatedResponse} from './chatboxcomponents/automatedResponses';
 import SendIcon from '@mui/icons-material/Send';
 // import { render } from '@testing-library/react';
-import LoadingAnimationComponent from './ChatBoxComponents/LoadingAnimationComponent';
+import LoadingAnimationComponent from './chatboxcomponents/LoadingAnimationComponent';
 
 const ChatBox =()=>{ 
 
@@ -114,15 +114,17 @@ const ChatBox =()=>{
             {/* <LoadingAnimationComponent/> */}
          </div>
          <div className='text-input'>
-            <Input className='textField' 
+            <Input 
             fullWidth={true} 
             size={14} 
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
             placeholder='How can we help you today?'
-            multiline={true}/>
+            multiline={true}
+            maxRows={1}
+            disableUnderline={true}/>
   
-            <button className='submit-button' onClick={()=>handleSubmit(userInput)} type='submit'><SendIcon className='send-icon' color='purple' size={24} /></button></div> 
+            <button className='submit-button' onClick={()=>handleSubmit(userInput)} type='submit'><SendIcon className='send-icon' size={24} /></button></div> 
     
         </div> 
     );

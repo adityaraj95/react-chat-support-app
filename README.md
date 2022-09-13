@@ -3,34 +3,22 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
+## Local Setup Instructions
+### Run `git clone` command to clone the repo to your local.
 
-## Available Scripts
+### Run `npm install` from at repository's root folder(check if the latest package.json is present). 
 
-After cloning the repository, go in the project directory and run the following npm commands:
-
-### `npm install`
-
-Will install all the dependencies in development mode.\
+Make sure all dependencies are installed correctly. The project mainly uses @mui Component Library. Kindly find the documentation here : https://mui.com/material-ui/ \
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Working Preview 
+ 
+### Loading bar upon no user input
+![chatbot](/src/components/assets/Img/chatbox_loading.png "ChatBox Loading Preview")
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information
+### User experience upon query
+![chatbot](/src/components/assets/Img/chatbox_response.png "ChatBox Response Preview")

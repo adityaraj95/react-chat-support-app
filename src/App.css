@@ -53,18 +53,18 @@
   text-align: left;
   padding-left: 10px;
 }
-.textField{
-  /* border: 1px solid #949494; */
-}
+
 .submit-button{
   border: 0px;
   background-color: white;
-  padding:1px 10px;
+  color: purple;
+  padding:5px 10px;
   height: fit-content;
 }
 .text-input{
 display: flex;
 border: none;
+border-top: 1px solid #929292;
 }
 .user-text{
   text-align: right;
@@ -175,6 +175,6 @@ border: none;
 .send-icon{
   transform: rotate(-20deg);
 }
-.css-1nvjk1h-MuiInputBase-root-MuiInput-root {
+.MuiInputBase-root{
   padding: 10px!important;
 }

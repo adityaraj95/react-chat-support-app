@@ -1,1 +1,0 @@
-# react-chat-support-app
