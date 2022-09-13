@@ -6,9 +6,6 @@ import ChatBox from './components/ChatBox';
 function App() {
   return (
     <div className="App">
-        <p>
-          Render Chatbox here
-        </p>
         <ChatBox/>
     </div>
   );

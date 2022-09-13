@@ -14,7 +14,7 @@ const ChatBox =()=>{
     const [isLoading, setisLoading]= useState(false); // boolean for displaying loading animation
     const [isActive , setIsActive] = useState(true); //flag for displaying loading animation
     const [chatText, setChatText] = useState([]); //Chat Text is a first in first out array which stores the chat conversation in order.
-    const [time , setTime] = useState(0);
+    const [time , setTime] = useState(0); // setclock for 5 second timeout upon no user input
     const [input , setInput] = useState(false);
 
     const handleSubmit=(userInput)=>{ // Submit function
@@ -68,9 +68,9 @@ const ChatBox =()=>{
  
     },[isActive])
     useEffect(()=>{ //chaining react hooks to set 5 second timeout upon no user input
-        console.log('check if hook is called',time);
+        // console.log('check if hook is called',time);
         if(time>5000 && isActive){
-            console.log('do the loading animation', time);
+            // console.log('do the loading animation', time);
             setisLoading(true);
             setTimeout(() => { // TODO : resolve edge case where user input comes while animation in progress
                     setChatText(chatText.concat(automatedResponses[1])); // do loading animation for 3 seconds before rendering next response
@@ -91,7 +91,7 @@ const ChatBox =()=>{
                 setisLoading(false);
                 setTime(0);
                 isActive(true);
-              }, 2000);
+              }, 5000);
                 
             }
         })
@@ -118,12 +118,11 @@ const ChatBox =()=>{
             fullWidth={true} 
             size={14} 
             value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
+            onChange={(e) => {setUserInput(e.target.value); setIsActive(false);}}
             placeholder='How can we help you today?'
             multiline={true}
-            maxRows={1}
             disableUnderline={true}/>
-  
+    
             <button className='submit-button' onClick={()=>handleSubmit(userInput)} type='submit'><SendIcon className='send-icon' size={24} /></button></div> 
     
         </div> 
