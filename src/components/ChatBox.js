@@ -3,7 +3,7 @@ import React, { useState , useEffect} from 'react'
 import {CgClose} from 'react-icons/cg';
 import { Input } from '@mui/material';
 import {automatedResponse} from './ChatBoxComponents/automatedResponses';
-import {IoIosSend} from 'react-icons/io'
+import SendIcon from '@mui/icons-material/Send';
 // import { render } from '@testing-library/react';
 import LoadingAnimationComponent from './ChatBoxComponents/LoadingAnimationComponent';
 
@@ -56,12 +56,7 @@ const ChatBox =()=>{
         setChatText(chatText.concat(automatedResponses[0]));
 
     },[])
-    // useEffect(()=>{  // TODO : improve timeout logic //// started timer which renders loading animation upon no user input within 3000ms
-   
- 
-    // },[isActive])
-    useEffect(()=>{ //chaining react hooks to set 5 second timeout upon no user input
-        // console.log('check if hook is called',isActive);
+    useEffect(()=>{  // TODO : improve timeout logic //// started timer which renders loading animation upon no user input within 3000ms
         let interval;
         // console.log('check is active', isActive);
         if(isActive){
@@ -70,8 +65,12 @@ const ChatBox =()=>{
                 setTime((time) => time + 10);
               }, 10);
         }
+ 
+    },[isActive])
+    useEffect(()=>{ //chaining react hooks to set 5 second timeout upon no user input
+        console.log('check if hook is called',time);
         if(time>5000 && isActive){
-            // console.log('do the loading animation', time);
+            console.log('do the loading animation', time);
             setisLoading(true);
             setTimeout(() => { // TODO : resolve edge case where user input comes while animation in progress
                     setChatText(chatText.concat(automatedResponses[1])); // do loading animation for 3 seconds before rendering next response
@@ -90,6 +89,8 @@ const ChatBox =()=>{
                 setTimeout(() => { // TODO : resolve edge case where user input comes while animation in progress
                     setChatText(chatText.concat(automatedResponses[random])); // do loading animation for 3 seconds before rendering next response
                 setisLoading(false);
+                setTime(0);
+                isActive(true);
               }, 2000);
                 
             }
@@ -120,7 +121,8 @@ const ChatBox =()=>{
             onChange={(e) => setUserInput(e.target.value)}
             placeholder='How can we help you today?'
             multiline={true}/>
-            <button className='submit-button' onClick={()=>handleSubmit(userInput)} type='submit'><IoIosSend color='purple' size={24}/></button></div> 
+  
+            <button className='submit-button' onClick={()=>handleSubmit(userInput)} type='submit'><SendIcon className='send-icon' color='purple' size={24} /></button></div> 
     
         </div> 
     );
