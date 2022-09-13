@@ -11,13 +11,12 @@ const ChatBox =()=>{
     const [automatedResponses, setAutomatedResponses] = useState(automatedResponse);
     const [userInput, setUserInput]= useState('') ;
     const [isLoading, setisLoading]= useState(false);
-    const [noInputText , setNoInputText] = useState(true);
+    // const [noInputText , setNoInputText] = useState(true);
     const [chatText, setChatText] = useState([]);
 
     const handleSubmit=(userInput)=>{
         if(userInput.length>0){
             let _userMsg = { data : userInput , createdBy : '$user'}
-            setNoInputText(false);
             setChatText(chatText.concat(_userMsg));
             setUserInput('');
         }
@@ -25,34 +24,30 @@ const ChatBox =()=>{
     }
 
     const renderChat=(chatText)=>{
-        // console.log(chatText);
         if(chatText.length>0){
             return chatText.map(data => {
-                if(data.createdBy === '$user'){
-                   
+                if(data.createdBy === '$user'){ 
                    return <div className='user-text'> {data.data} </div>
-    
                 }else{
                   return <div className='system-text'>{data.data} </div>
                 }
              }   
-               
             );
         }else{
             return null;
         }
    
     }
-    useEffect(()=>{
-        setTimeout(() => {
-            if(noInputText){
-                setChatText(chatText.concat(automatedResponse));
-                setNoInputText(false);
-            }
+    // useEffect(()=>{      //I like to not remove code which did not work as it teaches more than what worked. 
+    //     setTimeout(() => {
+    //         if(noInputText){
+    //             setChatText(chatText.concat(automatedResponse));
+    //             setNoInputText(false);
+    //         }
            
-         }, 3000);
+    //      }, 3000);
     
-    },[noInputText])
+    // },[noInputText])
 
     useEffect(()=>{
         setChatText(chatText.concat(automatedResponses[0]));
