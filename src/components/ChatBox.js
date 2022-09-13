@@ -116,7 +116,7 @@ const ChatBox =()=>{
          <div className='text-input'>
             <Input 
             fullWidth={true} 
-            size={14} 
+            size={12} 
             value={userInput}
             onChange={(e) => {setUserInput(e.target.value); setIsActive(false);}}
             placeholder='How can we help you today?'
