@@ -8,22 +8,25 @@ import { render } from '@testing-library/react';
 
 const ChatBox =()=>{ 
 
-    const [automatedResponses, setAutomatedResponses] = useState(automatedResponse);
-    const [userInput, setUserInput]= useState('') ;
-    const [isLoading, setisLoading]= useState(false);
-    // const [noInputText , setNoInputText] = useState(true);
-    const [chatText, setChatText] = useState([]);
+    const [automatedResponses, setAutomatedResponses] = useState(automatedResponse); // automated responses would be added to chat text based on user input
+    const [userInput, setUserInput]= useState('') ; // User Input string is pushed to chat text upon submit
+    const [isLoading, setisLoading]= useState(false); // boolean for displaying loading animation
+    const [isActive , setIsActive] = useState(true);
+    const [chatText, setChatText] = useState([]); //Chat Text is a first in first out array which stores the chat conversation in order.
+    const [timeout , setTimeout] = useState(0);
 
-    const handleSubmit=(userInput)=>{
+    const handleSubmit=(userInput)=>{ // Submit function
         if(userInput.length>0){
             let _userMsg = { data : userInput , createdBy : '$user'}
             setChatText(chatText.concat(_userMsg));
             setUserInput('');
+            setIsActive(false);
         }
+        console.log('check timer',timeout);
      
     }
 
-    const renderChat=(chatText)=>{
+    const renderChat=(chatText)=>{ // Rendering what to be displayed in chat upon submit
         if(chatText.length>0){
             return chatText.map(data => {
                 if(data.createdBy === '$user'){ 
@@ -49,10 +52,26 @@ const ChatBox =()=>{
     
     // },[noInputText])
 
-    useEffect(()=>{
+    useEffect(()=>{ // Loading the chat box for the first time , set the initial chat text to desired message
+        // let interval;
         setChatText(chatText.concat(automatedResponses[0]));
-        // console.log('initial chattext', chatText)
+
     },[])
+    useEffect(()=>{  // TODO : improve timeout logic //// started timer which renders loading animation upon no user input within 3000ms
+        let interval;
+        if(isActive){
+            interval = setInterval(() => {
+                setTimeout((timeout) => timeout + 10);
+              }, 10);
+        }
+    },[isActive])
+    useEffect(()=>{
+        if(timeout>3000){
+            console.log('do the loading animation');
+            setTimeout(0);
+            setIsActive(false);
+        }
+    },[timeout])
 
     let chat= chatText && renderChat(chatText);
     return( 
