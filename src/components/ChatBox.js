@@ -5,15 +5,16 @@ import { Input } from '@mui/material';
 import {automatedResponse} from './ChatBoxComponents/automatedResponses';
 import {IoIosSend} from 'react-icons/io'
 import { render } from '@testing-library/react';
+import LoadingAnimationComponent from './ChatBoxComponents/LoadingAnimationComponent';
 
 const ChatBox =()=>{ 
 
     const [automatedResponses, setAutomatedResponses] = useState(automatedResponse); // automated responses would be added to chat text based on user input
     const [userInput, setUserInput]= useState('') ; // User Input string is pushed to chat text upon submit
-    // const [isLoading, setisLoading]= useState(false); // boolean for displaying loading animation
+    const [isLoading, setisLoading]= useState(false); // boolean for displaying loading animation
     const [isActive , setIsActive] = useState(true); //flag for displaying loading animation
     const [chatText, setChatText] = useState([]); //Chat Text is a first in first out array which stores the chat conversation in order.
-    const [timeout , setTimeout] = useState(0);
+    const [time , setTime] = useState(0);
 
     const handleSubmit=(userInput)=>{ // Submit function
         if(userInput.length>0){
@@ -22,7 +23,7 @@ const ChatBox =()=>{
             setUserInput('');
             setIsActive(false);
         }
-        console.log('check timer',timeout);
+        
      
     }
 
@@ -63,19 +64,24 @@ const ChatBox =()=>{
         if(isActive){
             // console.log('is active should be true');
             interval = setInterval(() => {
-                setTimeout((timeout) => timeout + 10);
+                setTime((time) => time + 10);
               }, 10);
         }
-        return () => clearInterval(interval);
+ 
     },[isActive])
     useEffect(()=>{ //chaining react hooks to set 3 second timeout upon no user input
-        if(timeout>3000 && isActive){
+        if(time>5000 && isActive){
             // console.log('do the loading animation', timeout);
-            setChatText(chatText.concat(automatedResponses[1]));
-            setTimeout(0);
+            setisLoading(true);
+            setTimeout(() => {
+                setChatText(chatText.concat(automatedResponses[1]));
+                setisLoading(false);
+              }, 3000);
+          
+            setTime(0);
             setIsActive(false);
         }
-    },[timeout])
+    },[time])
     useEffect(()=>{ // hook for everytime chat gets updated
         
     },[chatText])
@@ -92,6 +98,8 @@ const ChatBox =()=>{
                 if(data.createdBy){}else{}
             })} */}
             {chat}
+            { isLoading && <LoadingAnimationComponent/>}
+            <LoadingAnimationComponent/>
          </div>
          <div className='text-input'>
             <Input className='textField' 
