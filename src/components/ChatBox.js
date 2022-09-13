@@ -4,7 +4,7 @@ import {CgClose} from 'react-icons/cg';
 import { Input } from '@mui/material';
 import {automatedResponse} from './ChatBoxComponents/automatedResponses';
 import {IoIosSend} from 'react-icons/io'
-import { render } from '@testing-library/react';
+// import { render } from '@testing-library/react';
 import LoadingAnimationComponent from './ChatBoxComponents/LoadingAnimationComponent';
 
 const ChatBox =()=>{ 
@@ -15,6 +15,7 @@ const ChatBox =()=>{
     const [isActive , setIsActive] = useState(true); //flag for displaying loading animation
     const [chatText, setChatText] = useState([]); //Chat Text is a first in first out array which stores the chat conversation in order.
     const [time , setTime] = useState(0);
+    const [input , setInput] = useState(false);
 
     const handleSubmit=(userInput)=>{ // Submit function
         if(userInput.length>0){
@@ -55,7 +56,12 @@ const ChatBox =()=>{
         setChatText(chatText.concat(automatedResponses[0]));
 
     },[])
-    useEffect(()=>{  // TODO : improve timeout logic //// started timer which renders loading animation upon no user input within 3000ms
+    // useEffect(()=>{  // TODO : improve timeout logic //// started timer which renders loading animation upon no user input within 3000ms
+   
+ 
+    // },[isActive])
+    useEffect(()=>{ //chaining react hooks to set 5 second timeout upon no user input
+        // console.log('check if hook is called',isActive);
         let interval;
         // console.log('check is active', isActive);
         if(isActive){
@@ -64,11 +70,8 @@ const ChatBox =()=>{
                 setTime((time) => time + 10);
               }, 10);
         }
- 
-    },[isActive])
-    useEffect(()=>{ //chaining react hooks to set 5 second timeout upon no user input
         if(time>5000 && isActive){
-            // console.log('do the loading animation', timeout);
+            // console.log('do the loading animation', time);
             setisLoading(true);
             setTimeout(() => { // TODO : resolve edge case where user input comes while animation in progress
                     setChatText(chatText.concat(automatedResponses[1])); // do loading animation for 3 seconds before rendering next response
@@ -78,9 +81,20 @@ const ChatBox =()=>{
             setTime(0);
             setIsActive(false);
         }
-    },[time])
+    },[time, isActive])
     useEffect(()=>{ // hook for everytime chat gets updated
-        
+        let random = 2 +  Math.floor(Math.random() * (automatedResponses.length - 2)); //generating random number to pick automated response
+        // console.log('random number is', random);
+        chatText.map((data , i, arr)=>{ // prepare user response after latest query
+            if(i === chatText.length -1 && data.createdBy === '$user' ){
+                setTimeout(() => { // TODO : resolve edge case where user input comes while animation in progress
+                    setChatText(chatText.concat(automatedResponses[random])); // do loading animation for 3 seconds before rendering next response
+                setisLoading(false);
+              }, 2000);
+                
+            }
+        })
+        // console.log('added chat text', chatText);
     },[chatText])
 
     let chat= chatText && renderChat(chatText);

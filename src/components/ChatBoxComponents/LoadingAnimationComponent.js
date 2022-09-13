@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 
-const LoadingAnimationComponent  =()=>{ 
+const LoadingAnimationComponent=()=>{ 
     return(
         <div className='loading-animation-box'>
             <div className='loading-bubble bub-1'></div>

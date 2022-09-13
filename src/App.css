@@ -76,11 +76,12 @@ border: none;
   word-wrap: break-word;
   margin-left: auto;
   margin-top: 20px;
+  margin-bottom: 20px;
   margin-right: 20px;
   border-radius:5px 5px 0px 5px;
 }
 
-.system-text{
+.system-text{  /*TODO : combine multiple css classes into common classes to reduce number of lines*/
   text-align: left;
   border: 1px solid black;
   background-color: #f6f6f6;
@@ -92,6 +93,7 @@ border: none;
   word-wrap: break-word;
   margin-left: 20px;
   margin-top: 20px;
+  margin-bottom: 20px;
   margin-right: auto;
   border-radius:5px 5px 5px 0px;
 }
