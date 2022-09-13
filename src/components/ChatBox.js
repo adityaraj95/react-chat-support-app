@@ -69,12 +69,12 @@ const ChatBox =()=>{
         }
  
     },[isActive])
-    useEffect(()=>{ //chaining react hooks to set 3 second timeout upon no user input
+    useEffect(()=>{ //chaining react hooks to set 5 second timeout upon no user input
         if(time>5000 && isActive){
             // console.log('do the loading animation', timeout);
             setisLoading(true);
             setTimeout(() => {
-                setChatText(chatText.concat(automatedResponses[1]));
+                setChatText(chatText.concat(automatedResponses[1])); // do loading animation for 3 seconds before rendering next response
                 setisLoading(false);
               }, 3000);
           
@@ -99,7 +99,7 @@ const ChatBox =()=>{
             })} */}
             {chat}
             { isLoading && <LoadingAnimationComponent/>}
-            <LoadingAnimationComponent/>
+            {/* <LoadingAnimationComponent/> */}
          </div>
          <div className='text-input'>
             <Input className='textField' 
@@ -111,7 +111,7 @@ const ChatBox =()=>{
             multiline={true}/>
             <button className='submit-button' onClick={()=>handleSubmit(userInput)} type='submit'><IoIosSend color='purple' size={24}/></button></div> 
     
-        </div>
+        </div> 
     );
 }
 

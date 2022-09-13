@@ -120,6 +120,48 @@ border: none;
   margin-right: 5px;
 }
 
-/* .loading-bubble3{
+.bub-1{
+  animation-name: loading-bub1;
+  animation-duration: 3s;
+  position: relative;
+}
+.bub-2{
+  animation-name: loading-bub2;
+  animation-duration: 3s;
+  position: relative;
+}
+.bub-3{
+  animation-name: loading-bub3;
+  animation-duration: 3s;
+  position: relative;
+}
 
-} */
+@keyframes loading-bub1 {
+  0%   {background-color:#b2b2b2; top:0px;}
+  12%  {background-color:#b2b2b2; top:-5px;}
+  33%  {background-color:#e5e5e5; top:0px;}
+  45%  {background-color:#e5e5e5; top:0px;}
+  66%  {background-color:#e5e5e5; top:0px;}
+  78%  {background-color:#e5e5e5; top:0px;}
+  100% {background-color:#e5e5e5; top:0px;}
+}
+
+@keyframes loading-bub2 {
+  0%   {background-color:#e5e5e5; top:0px;}
+  12%  {background-color:#e5e5e5; top:0px;}
+  33%  {background-color:#b2b2b2; top:0px;}
+  45%  {background-color:#b2b2b2; top:-5px;}
+  66%  {background-color:#e5e5e5; top:0px;}
+  78%  {background-color:#e5e5e5; top:0px;}
+  100% {background-color:#e5e5e5; top:0px;}
+}
+
+@keyframes loading-bub3 {
+  0%   {background-color:#e5e5e5; top:0px;}
+  12%  {background-color:#e5e5e5; top:0px;}
+  33%  {background-color:#e5e5e5; top:0px;}
+  45%  {background-color:#e5e5e5; top:0px;}
+  66%  {background-color:#e5e5e5; top:0px;}
+  78%  {background-color:#b2b2b2; top:-5px;}
+  100% {background-color:#b2b2b2; top:0px;}
+}
