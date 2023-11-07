@@ -2,10 +2,10 @@ import React, { useState , useEffect} from 'react'
 // import CloseIcon from '@mui/icons-material/Close';
 import {CgClose} from 'react-icons/cg';
 import { Input } from '@mui/material';
-import {automatedResponse} from './chatboxcomponents/automatedResponses';
+import {automatedResponse} from './ChatBoxComponents/automatedResponses';
 import SendIcon from '@mui/icons-material/Send';
 // import { render } from '@testing-library/react';
-import LoadingAnimationComponent from './chatboxcomponents/LoadingAnimationComponent';
+import LoadingAnimationComponent from './ChatBoxComponents/LoadingAnimationComponent';
 
 const ChatBox =()=>{ 
 
@@ -69,7 +69,7 @@ const ChatBox =()=>{
     },[isActive])
     useEffect(()=>{ //chaining react hooks to set 5 second timeout upon no user input
         // console.log('check if hook is called',time);
-        if(time>5000 && isActive){
+        if(time>1000 && isActive){
             // console.log('do the loading animation', time);
             setisLoading(true);
             setTimeout(() => { // TODO : resolve edge case where user input comes while animation in progress

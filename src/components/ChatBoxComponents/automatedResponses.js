@@ -8,4 +8,3 @@ export const automatedResponse = [{data : 'Hi! let us know how we can help and w
                                   {data: 'Thank you for your continued patience. Kindly provide more details on the issue.', createdBy: '$system'},
                                   {data: 'Hi! my name is Adi, can I get your name?', createdBy: '$system'}];
 
-export default {automatedResponse};
